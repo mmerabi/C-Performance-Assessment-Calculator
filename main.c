@@ -1,7 +1,8 @@
 #include <stdio.h>
 
 int main(void) {
-    int input, CPI, TIME, MIPS, c1, c2, c3;
+    int input;
+    FILE *fptr; // read from file
 
     printf( "Michael Merabi CS222 \n");
     printf( "Performance Assessment \n \n ");
@@ -10,11 +11,30 @@ int main(void) {
     printf( "3) Quit \n\n");
     printf( "Enter Selection: ");
 
-    scanf("%d", &input);
+int insClass, ;
 
+    scanf("%d", &input);
+    getchar();
         switch (input){
             case 1:
-                printf( "3) Quit \n\n");
+                printf( "Enter the number of instruction classes: \n\n");
+                char ch = getc(fptr);
+                //convert ch to int here or change
+                printf( "Enter the number of instruction classes: \n\n");
+                char ch = getc(fptr);
+                printf( "Enter the number of instruction classes: \n\n");
+                char ch = getc(fptr);
+                printf( "Enter the number of instruction classes: \n\n");
+                char ch = getc(fptr);
+                printf( "Enter the number of instruction classes: \n\n");
+                char ch = getc(fptr);
+                printf( "Enter the number of instruction classes: \n\n");
+                char ch = getc(fptr);
+                printf( "Enter the number of instruction classes: \n\n");
+                char ch = getc(fptr);
+                printf( "Enter the number of instruction classes: \n\n");
+                char ch = getc(fptr);
+
                 break;
             case 2:
                 printf( "3) Quit \n\n");
@@ -26,6 +46,6 @@ int main(void) {
                 printf( "Bad input, quitting!\n" );
                 break;
     }
-    getchar();
+
 
 }
