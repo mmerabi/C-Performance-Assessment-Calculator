@@ -1,8 +1,17 @@
 #include <stdio.h>
+#include <stdlib.h>
+
+//Michael Merabi CS222 Project #1
+//Performance Assessment in C
+    
+    int *CPIcount ;
+    int *insCount;
+    int MHz;
+    int insClass2;
 
 void startup(){
-    printf( "Michael Merabi CS222 \n");
-    printf( "Performance Assessment \n");
+    printf( "\nMichael Merabi CS222 \n");
+    printf( "Performance Assessment: \n");
     printf( "-----------------------\n");
     printf( "\n1) Enter parameters\n");
     printf( "2) Print Results \n");
@@ -10,43 +19,91 @@ void startup(){
     printf( "Enter Selection: ");
 }
 
- int case1(int insClass, int machFreq, int c1CPI, int c1insCount, int c2CPI, int c2insCount, int c3CPI, int c3insCount) {
+ void case1() {
+            int cpiCt;
+            int insCt;
+            int numcount;
+            int i = 0;
 
-                printf( "\n\n Enter the number of instruction classes: ");
-                scanf("%d", &insClass);
+            scanf("%d", &insClass2);
+            printf( "\n\n Enter the number of instruction classes: ""%d",insClass2);
 
-                printf( "\n\n Enter the frequency of the machine (MHz): ");
-                scanf("%d", &machFreq);
-
-                printf( "\n\n Enter CPI of class 1: ");
-                scanf("%d", &c1CPI);
-
-                printf( "\n Enter the instruction count of class 1 (millions): ");
-                scanf("%d", &c1insCount);
-
-                printf( "\n\n Enter CPI of class 2: ");
-                scanf("%d", &c2CPI);
-
-                printf( "\n Enter the instruction count of class 2 (millions): ");
-                scanf("%d", &c2insCount);
-
-                printf( "\n\n Enter CPI of class 3: ");
-                scanf("%d", &c3CPI);
-
-                printf( "\n Enter the instruction count of class 3 (millions): ");
-                scanf("%d", &c3insCount);
-
-                return insClass, machFreq, c1CPI, c1insCount, c2CPI, c2insCount, c3CPI, c3insCount ;
-            }
+            scanf("%d", &MHz);
+            printf( "\n\n Enter the frequency of the machine (MHz): ""%d",MHz);
 
 
-int case2(){
 
-}
+            CPIcount = (int *)malloc(insClass2 * sizeof(int));
+            insCount = (int *)malloc(insClass2 * sizeof(int));
+
+
+             while ( i < insClass2) {
+                numcount = i+1;
+
+                printf( "\n\n Enter CPI of class %d: ", numcount);
+                scanf("%d", &cpiCt);
+                printf("\t%d",cpiCt);
+                CPIcount[i] = cpiCt;
+
+                printf( "\n Enter the instruction count of class %d (millions): ", numcount);
+                scanf("%d", &insCt);
+                printf("\t%d",insCt);
+                insCount[i] = insCt;
+                i++;    
+                }
+        }
+
+
+void case2() {
+
+    int numcount;
+    float avgcpi;
+    float avgtime;
+    float avgmips;
+    int i = 0;
+
+    //calculation variables
+    float num = 0;
+    float den = 0;
+    float time = 0;
+
+    printf( "FREQUENCY (MHz): %d \n\n" , MHz);
+    printf( "INSTRUCTION DISTRIBUTION \n\n");
+    printf( "CLASS \t CPI \t COUNT \n");
+
+    
+    while (i < insClass2 ) {
+        numcount = i + 1;
+
+        num += CPIcount[i]*insCount[i];
+        den += insCount[i];
+        time += insCount[i];
+
+        printf( "%d \t", numcount);
+        printf( "%d \t", CPIcount[i]);
+        printf( "%d \n", insCount[i]);
+        i++;
+    }
+
+    float megah = (float)MHz;
+
+    avgcpi = num/den;
+    avgtime = avgcpi*time*(1/megah)*1000;
+    avgmips = (megah*(10^6))/(avgcpi*(10^6));
+
+    printf("\n\nPERFORMANCE VALUES\n\n");
+
+    printf("AVERAGE CPI\t");
+    printf("%.2f \n",avgcpi);
+    printf("TIME (ms)\t");
+    printf("%.2f \n",avgtime);
+    printf("MIPS \t\t");
+    printf("%.2f \n \n",avgmips);
+    }
 
 
 int main(void) {
-    int input, insClass, machFreq, c1CPI, c1insCount, c2CPI, c2insCount, c3CPI, c3insCount;
+    int input;
 
     startup(); //printout of selection menu
 
@@ -54,18 +111,13 @@ int main(void) {
         scanf("%d", &input);
         
         if(input == 1){ //write parameters
-            case1(insClass, machFreq, c1CPI, c1insCount, c2CPI, c2insCount, c3CPI, c3insCount);
+            case1();
             startup();
         }
         
         if (input == 2){ // calculate answers
             case2();
             startup();
-        }
-
-        if (input != 1 && input != 2){ // error catch
-            printf( " Incorrect input, try again. \n");
-            startup();    
         }
     }
 
@@ -74,4 +126,4 @@ int main(void) {
         exit(0);
         //exit out
     }
- }   
+ }
