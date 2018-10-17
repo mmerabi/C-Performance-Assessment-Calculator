@@ -1,8 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-//Michael Merabi CS222 Project #1
-//Performance Assessment in C
     
     int *CPIcount ;
     int *insCount;
